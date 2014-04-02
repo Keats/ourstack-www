@@ -7,5 +7,8 @@
 @import "snowflake/neat/neat";
 @import "snowflake/bitters/variables";
 @import "snowflake/bitters/typography";
+@import "snowflake/bitters/extends/base";
+@import "snowflake/bitters/forms";
 
 // Import your app below
+@import "design";

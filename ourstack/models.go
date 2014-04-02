@@ -22,6 +22,10 @@ type Company struct {
 	Remote      bool
 }
 
+type Tech struct {
+	Name string
+}
+
 func GetCompanies() []Company {
 	companies := []Company{}
 	err := db.Select(&companies, "SELECT * FROM companies")
@@ -30,4 +34,22 @@ func GetCompanies() []Company {
 	}
 
 	return companies
+}
+
+//
+func GetTechList() []string {
+	techs := []Tech{}
+
+	err := db.Select(&techs, "SELECT DISTINCT name FROM techs")
+	if err != nil {
+		log.Printf("%v", err.Error())
+	}
+
+	techList := []string{}
+
+	for _, tech := range techs {
+		techList = append(techList, tech.Name)
+	}
+
+	return techList
 }

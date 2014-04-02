@@ -2,11 +2,20 @@
     <!DOCTYPE html>
     <html lang="en">
         <head>
-          <title>Ourstack</title>
-          <LINK href="public/css/app.css" rel="stylesheet" type="text/css" >
+            <title>Ourstack</title>
+            <LINK href="public/css/app.css" rel="stylesheet" type="text/css">
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
         </head>
+
         <body>
-        {{template "body" .}}
+            <div id="container">
+                <h1>Ourstack</h1>
+                {{template "body" .}}
+            </div>
+
+            <script src="public/js/typeahead.js"></script>
+            <script src="public/js/ourstack.js"></script>
         </body>
+
     </html>
 {{ end }}

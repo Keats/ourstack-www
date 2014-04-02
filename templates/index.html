@@ -1,4 +1,9 @@
 {{define "body"}}
+  <form>
+    <input class="location" type="text" placeholder="Where?" />
+    <input class="tech" type="text" placeholder="What?" />
+  </form>
+
 	{{ range .}}
 		<h2>{{ .Name }}</h2>
 	{{ end }}

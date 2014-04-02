@@ -1,6 +1,7 @@
 package ourstack
 
 import (
+	"encoding/json"
 	"html/template"
 	"net/http"
 )
@@ -23,5 +24,17 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	err := tmpl["index"].ExecuteTemplate(w, "base", data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
+}
+
+func TechHandler(w http.ResponseWriter, r *http.Request) {
+	content, err := json.Marshal(GetTechList())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("content-type", "application/json")
+	w.Write(content)
 }
