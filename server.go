@@ -13,6 +13,7 @@ func main() {
 
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 	http.HandleFunc("/techs", ourstack.TechHandler)
+	http.HandleFunc("/locations", ourstack.LocationHandler)
 	http.HandleFunc("/", ourstack.IndexHandler)
 
 	http.ListenAndServe(":7777", nil)

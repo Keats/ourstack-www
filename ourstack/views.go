@@ -38,3 +38,14 @@ func TechHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	w.Write(content)
 }
+
+func LocationHandler(w http.ResponseWriter, r *http.Request) {
+	content, err := json.Marshal(GetLocationList())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("content-type", "application/json")
+	w.Write(content)
+}

@@ -1,6 +1,7 @@
 package ourstack
 
 import (
+	"fmt"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"log"
@@ -26,6 +27,11 @@ type Tech struct {
 	Name string
 }
 
+type Location struct {
+	City    string
+	Country string
+}
+
 func GetCompanies() []Company {
 	companies := []Company{}
 	err := db.Select(&companies, "SELECT * FROM companies")
@@ -36,7 +42,7 @@ func GetCompanies() []Company {
 	return companies
 }
 
-//
+// Gets a simple list of all tech we have in the db (only their name)
 func GetTechList() []string {
 	techs := []Tech{}
 
@@ -52,4 +58,21 @@ func GetTechList() []string {
 	}
 
 	return techList
+}
+
+func GetLocationList() []string {
+	locations := []Location{}
+	err := db.Select(&locations, "SELECT DISTINCT city, country FROM locations")
+	if err != nil {
+		log.Printf("%v", err.Error())
+	}
+
+	locationsList := []string{}
+
+	for _, location := range locations {
+		locationsList = append(locationsList, fmt.Sprintf("%s (%s)", location.City, location.Country))
+
+	}
+
+	return locationsList
 }
