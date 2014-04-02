@@ -11,7 +11,8 @@ func main() {
 	fmt.Println("Starting server...")
 	ourstack.GetDBConnection("postgres://testing:password@localhost/ourstack?sslmode=disable")
 
-	http.HandleFunc("/", ourstack.HomeHandler)
+	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
+	http.HandleFunc("/", ourstack.IndexHandler)
 	http.ListenAndServe(":7777", nil)
 
 }

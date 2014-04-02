@@ -1,7 +1,6 @@
 package ourstack
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -9,11 +8,11 @@ import (
 var tmpl = make(map[string]*template.Template)
 
 func init() {
-	tmpl["home"] = template.Must(template.ParseFiles("templates/home.html", "templates/base.html"))
+	tmpl["index"] = template.Must(template.ParseFiles("templates/index.html", "templates/base.html"))
 
 }
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
+func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	// "/" matchs every requests, but we only want the homepage
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
@@ -21,7 +20,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	data := GetCompanies()
 
-	err := tmpl["home"].ExecuteTemplate(w, "base", data)
+	err := tmpl["index"].ExecuteTemplate(w, "base", data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

@@ -1,0 +1,7 @@
+// Neat settings
+@import "snowflake/neat/neat-helpers";
+
+// Define your breakpoints
+$mobile: new-breakpoint(max-width 480px 4);
+$tablet: new-breakpoint(max-width 768px min-width 481px 8);
+$desktop: new-breakpoint(min-width 769px);
